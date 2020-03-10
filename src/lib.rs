@@ -5,16 +5,12 @@ extern crate ff;
 extern crate pairing_plus as pairing;
 extern crate sha2;
 
+mod accumulate;
 mod hash_to_field;
 mod param;
 
-use ff::Field;
-use pairing::bls12_381::*;
-use param::paramgen_from_alpha;
+#[cfg(test)]
+mod tests;
 
-fn main() {
-    let pp = paramgen_from_alpha(&Fr::one(), 8);
-
-    println!("{:?}", pp);
-    println!("Hello, world!");
-}
+#[cfg(test)]
+extern crate rand_core;

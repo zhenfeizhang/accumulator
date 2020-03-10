@@ -35,7 +35,7 @@ fn bench_acc(c: &mut Criterion) {
             let s = format!("this is message number {}", i);
             values.push(s.into_bytes());
         }
-        let bench_str = format!("bench accumulation, vector size = {}", n);
+        let bench_str = format!("accumulation");
         let values_clone = values.clone();
         let pp_clone = pp.clone();
         let mut bench = Benchmark::new(&bench_str, move |b| {
@@ -52,7 +52,7 @@ fn bench_acc(c: &mut Criterion) {
                 proved_values.push(values[*e].clone());
             }
 
-            let bench_str = format!("bench proving, vector size = {}, #proof = {}", n, *ham);
+            let bench_str = format!("proving, #proof = {}", *ham);
             let values_clone = values.clone();
             let pp_clone = pp.clone();
             let index_clone = index.clone();
@@ -62,7 +62,7 @@ fn bench_acc(c: &mut Criterion) {
                 })
             });
 
-            let bench_str = format!("bench verification, vector size = {}, #proof = {}", n, *ham);
+            let bench_str = format!("verification, #proof = {}", *ham);
             let proof = prove(&values, &index, &pp);
             let acc_clone = acc.clone();
             let pp_clone = pp.clone();
@@ -75,8 +75,8 @@ fn bench_acc(c: &mut Criterion) {
 
         let bench = bench.warm_up_time(Duration::from_millis(1000));
         let bench = bench.measurement_time(Duration::from_millis(5000));
-        let bench = bench.sample_size(100);
-
+        let bench = bench.sample_size(10);
+        let bench_str = format!("vector size = {}", n);
         c.bench(&bench_str, bench);
     }
 }

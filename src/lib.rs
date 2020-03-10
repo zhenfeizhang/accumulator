@@ -8,6 +8,7 @@ extern crate sha2;
 mod accumulate;
 mod hash_to_field;
 mod param;
+pub mod poly;
 
 #[cfg(test)]
 mod tests;

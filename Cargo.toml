@@ -14,9 +14,13 @@ edition = "2018"
   sha2 = "0.8"
   bigint = { version = "4", default-features = false }
 
-  [dev-dependencies]
-    bencher = "0.1.5"
-    criterion = "0.2.11"
-    rand = "0.5"
-    rand_core = ""
-    rand_xorshift = ""
+[dev-dependencies]
+  bencher = "0.1.5"
+  criterion = "0.2.11"
+  rand = "0.5"
+  rand_core = ""
+  rand_xorshift = ""
+
+[[bench]]
+  name = "poly"
+  harness = false

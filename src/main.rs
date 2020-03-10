@@ -5,16 +5,33 @@ extern crate ff;
 extern crate pairing_plus as pairing;
 extern crate sha2;
 
+mod accumulate;
 mod hash_to_field;
 mod param;
+mod poly;
 
+use accumulate::accumulate;
 use ff::Field;
 use pairing::bls12_381::*;
 use param::paramgen_from_alpha;
+use poly::*;
 
 fn main() {
-    let pp = paramgen_from_alpha(&Fr::one(), 8);
+    let n = 8;
+    let pp = paramgen_from_alpha(&Fr::one(), n);
+    let mut values = Vec::with_capacity(n);
+    for i in 0..n {
+        let s = format!("this is message number {}", i);
+        values.push(s.into_bytes());
+    }
+    println!("pp: {:?}", pp);
+    let acc = accumulate(&values, &pp);
+    println!("acc: {:?}", acc);
 
-    println!("{:?}", pp);
+    println!(
+        "vec: {:?}",
+        evaluate(&vec![Fr::one(), Fr::one(), Fr::one()])
+    );
+
     println!("Hello, world!");
 }

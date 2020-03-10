@@ -22,5 +22,5 @@ edition = "2018"
   rand_xorshift = ""
 
 [[bench]]
-  name = "poly"
+  name = "acc"
   harness = false

@@ -5,9 +5,9 @@ extern crate ff;
 extern crate pairing_plus as pairing;
 extern crate sha2;
 
-mod accumulate;
+pub mod accumulate;
 mod hash_to_field;
-mod param;
+pub mod param;
 pub mod poly;
 
 #[cfg(test)]

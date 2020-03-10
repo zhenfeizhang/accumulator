@@ -6,6 +6,8 @@ pub fn evaluate(fr_vec: &Vec<Fr>) -> Vec<Fr> {
     for e in fr_vec.iter().skip(1) {
         res = poly_mul_by_mono(&res, e);
     }
+
+    assert_eq!(res[0], Fr::one());
     res
 }
 

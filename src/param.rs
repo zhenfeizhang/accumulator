@@ -13,7 +13,7 @@ pub struct Params {
 /// Internal logic for parameter generation.
 /// Will always succeed.
 /// Will not be called outside this module.
-pub(crate) fn paramgen_from_alpha(alpha: &Fr, n: usize) -> Params {
+pub fn paramgen_from_alpha(alpha: &Fr, n: usize) -> Params {
     #[cfg(not(debug_assertions))]
     println!(
         "\n\n\nWarning!!! \nWarning!!! \nWarning!!! \nWarning!!! \n\
@@ -26,6 +26,8 @@ pub(crate) fn paramgen_from_alpha(alpha: &Fr, n: usize) -> Params {
     let mut g2_gen = Vec::with_capacity(n);
     // verifier vector at index i-1 contains g2^{alpha^i} for i ranging from 1 to n
     let mut alpha_power = Fr::one();
+    g1_gen.push(G1Affine::one());
+    g2_gen.push(G2Affine::one());
     for _ in 0..n {
         alpha_power.mul_assign(&alpha); // compute alpha^i
         g1_gen.push(G1Affine::one().mul(alpha_power).into_affine());

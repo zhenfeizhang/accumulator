@@ -3,6 +3,8 @@ Pairing based accumulator
 
 This is a very raw, very prototype implementation of an accumulator using
 pairing over BLS12-381 curve.
+This code comes with minimum tests and benchmarks.
+It is not audited. Use at your own risk.
 
 # Algorithms
 * public parameters:
@@ -35,7 +37,7 @@ pairing over BLS12-381 curve.
 
 # Characteristics
 * Accumulator size: `48` bytes
-* Accumulator cose: `n * G1_mul`
+* Accumulator cost: `n * G1_mul`
 * Proof size: `48` bytes
 * Proof cost: `(n-k) * G1_mul`
 * Verification cost: `k * G2_mul + 2 pairing`

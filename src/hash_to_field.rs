@@ -7,7 +7,7 @@ use sha2::{Digest, Sha512};
 use std::ops::Rem;
 
 pub(crate) fn hash_to_field_vector<Blob: AsRef<[u8]>>(input: &[Blob]) -> Vec<Fr> {
-    input.iter().map(|x| hash_to_field(x)).collect()
+    input.iter().map(hash_to_field).collect()
 }
 
 /// A wrapper of `hash_to_field` that outputs `Fr`s instead of `FrRepr`s.
